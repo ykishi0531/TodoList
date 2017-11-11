@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>とど</title>
+    <style>
+      body {
+        width: 800px;
+        margin: 20px;
+        padding: 0
+      }
+      div {
+        margin: 5px
+      }
+      th, td {
+        border-bottom: 1px solid #ddd
+      }
+      th.val {
+        width: 360px
+      }
+      th.limit {
+        width: 200px
+      }
+      th.pri {
+        width: 120px
+      }
+      th.status {
+        width: 120px
+      }
+      td.status {
+        text-align: center
+      }
+      .square_btn{
+          display: inline-block;
+          padding: 0px 5px;
+          text-decoration: none;
+          background: #668ad8;
+          color: #FFF;
+          border-bottom: solid 4px #627295;
+          border-radius: 3px;
+      }
+      .square_btn:active {
+          -ms-transform: translateY(4px);
+          -webkit-transform: translateY(4px);
+          transform: translateY(4px);
+          border-bottom: none;
+      }
+      span.priority {
+        display: block;
+        text-align: center;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+      }
+      .hight {
+        background: #fdd
+      }
+      .middle {
+        background: #dfd
+      }
+      .low {
+        background: #ddf
+      }
+      .list_area {
+        width: 800px
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TODOリスト</h1>
+    <div class="input_area">
+      <form action="#" th:action="@{./add}" th:object="${form}" method="post">
+        <input type="hidden" th:field="*{id}" th:value="*{id}" />
+        内容:<input type="text" th:field="*{value}" required="true" /> 
+        期日:<input type="datetime-local" th:field="*{limitDate}" required="true" /> 
+        重要度:<select th:field="*{priorityId}">
+          <option th:each="priority : ${priorities}"
+            th:value="${priority.id}"
+            th:text="${priority}">hoge</option>
+        </select>
+        <input type="submit" value="ToDoる" />
+      </form>
+    </div>
+    <div class="sort_area">
+      <form action="#" th:action="@{./}" method="GET">
+        <label><input type="radio" value="0" name="orderType" checked="checked" />登録順</label>
+        <label><input type="radio" value="1" name="orderType" />期日順</label>
+        <label><input type="radio" value="2" name="orderType" />重要度順</label>
+        <select name="sortType">
+          <option value="0" th:text="昇順"></option>
+          <option value="1" th:text="降順"></option>
+        </select>
+        <label><input type="checkbox" name="ignoreDone" th:value="true" th:text="終了したTODOを含めない"></input></label>
+        <input type="submit" value="並べかえる" />
+      </form>
+    </div>
+    <table class="list_area">
+      <tr>
+        <th class="val">内容</th>
+        <th class="limit">期日</th>
+        <th class="pri">重要度</th>
+        <th class="status">状態</th>
+      </tr>
+      <tr class="radio" th:each="dto : ${todoDtoList}">
+        <td th:text="${dto.value}"></td>
+        <td th:text="${dto.limitDate}"></td>
+        <td th:switch="${dto.priority.id}">
+            <span th:case="1" th:text="${dto.priority}" class="priority hight"></span>
+            <span th:case="2" th:text="${dto.priority}" class="priority middle"></span>
+            <span th:case="3" th:text="${dto.priority}" class="priority low"></span>
+        </td>
+        <td th:switch="${dto.done}" class="status">
+          <input type="hidden" th:value="${dto.id}" />
+          <a th:case="false" th:text="完了する" th:href="|./done?id=${dto.id}|" class="square_btn"></a>
+          <span th:case="true" th:text="DONE"></span>
+          <span th:case="*" th:text="${dto.done}"></span>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
