@@ -108,7 +108,7 @@ public class TodoService {
    * @param form
    */
   public void addTodo(TodoForm form) {
-    // 日付をjava.sql.Dateに変換してentityに詰める
+    // 日付をTimestampに変換してentityに詰める
     SimpleDateFormat sdf = new SimpleDateFormat(Constants.INPUT_DATE_FORMAT);
     Todo todo = new Todo();
     try {
