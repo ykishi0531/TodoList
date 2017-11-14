@@ -4,10 +4,9 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -67,37 +66,32 @@ public class TodoService {
     
     // ignoreDoneが設定されていたら、完了したTODOをリストから除去する
     if (ignoreDone) {
-      Iterator<TodoDto> ite = resultDtoList.iterator();
-      while (ite.hasNext()) {
-        if (ite.next().isDone()) {
-          ite.remove();
-        }
-      }
+      // StreamAPIに置き替え
+      resultDtoList = resultDtoList.stream().filter(todo -> !todo.isDone()).collect(Collectors.toList());
     }
     
     // 並べ替える
     if (!orderType.equals(Constants.ORDER_INPUT)
             || (sortType.equals(Constants.SORT_DESC))) {
-      Collections.sort(resultDtoList, new Comparator<TodoDto>() {
-        @Override
-        public int compare(TodoDto o1, TodoDto o2) {
-          int comp;
-          switch (orderType) {
-            case Constants.ORDER_INPUT:
-              comp = (int)(o1.getId() - o2.getId());
-              break;
-            case Constants.ORDER_DATE:
-              comp = o1.getLimitDate().compareTo(o2.getLimitDate());
-              break;
-            default :
-              comp = o1.getPriority().getId() - o2.getPriority().getId();
-          }
-          if (sortType.equals(Constants.SORT_DESC)) {
-            comp = -comp;
-          }
-          return comp;
-        }
-      });
+      // ここもJava8化 (StreamAPI)
+      // 並び順
+      Comparator<TodoDto> order;
+      switch (orderType) {
+        case Constants.ORDER_INPUT:
+          order = Comparator.comparing(TodoDto::getId);
+          break;
+        case Constants.ORDER_DATE:
+          order =  Comparator.comparing(TodoDto::getLimitDate);
+          break;
+        default:
+          order = Comparator.comparing(TodoDto::getPriority);
+      }
+      // 昇順降順
+      if(sortType.equals(Constants.SORT_DESC)) {
+        order = order.reversed();
+      }
+      resultDtoList = resultDtoList.stream().sorted(order).collect(Collectors.toList());
+      
     }
     return resultDtoList;
   }
