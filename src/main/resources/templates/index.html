@@ -71,8 +71,8 @@
     <div class="input_area">
       <form action="#" th:action="@{./add}" th:object="${form}" method="post">
         <input type="hidden" th:field="*{id}" th:value="*{id}" />
-        内容:<input type="text" th:field="*{value}" required="true" /> 
-        期日:<input type="datetime-local" th:field="*{limitDate}" required="true" /> 
+        内容:<input type="text" th:field="*{value}" /> 
+        期日:<input type="datetime-local" th:field="*{limitDate}" /> 
         重要度:<select th:field="*{priorityId}">
           <option th:each="priority : ${priorities}"
             th:value="${priority.id}"
