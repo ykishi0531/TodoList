@@ -4,55 +4,54 @@ import com.example.enums.PriorityEnum;
 
 public class TodoDto {
 
-  private long id;
-  
-  private String value;
-  
-  private String limitDate;
-  
-  private PriorityEnum priority;
-  
-  private boolean done;
+    private long id;
 
-  public long getId() {
-    return id;
-  }
+    private String value;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    private String limitDate;
 
-  public String getValue() {
-    return value;
-  }
+    private PriorityEnum priority;
 
-  public void setValue(String value) {
-    this.value = value;
-  }
+    private boolean done;
 
-  public String getLimitDate() {
-    return limitDate;
-  }
+    public long getId() {
+        return id;
+    }
 
-  public void setLimitDate(String limitDate) {
-    this.limitDate = limitDate;
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  public PriorityEnum getPriority() {
-    return priority;
-  }
+    public String getValue() {
+        return value;
+    }
 
-  public void setPriority(PriorityEnum priority) {
-    this.priority = priority;
-  }
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-  public boolean isDone() {
-    return done;
-  }
+    public String getLimitDate() {
+        return limitDate;
+    }
 
-  public void setDone(boolean done) {
-    this.done = done;
-  }
-  
-  
+    public void setLimitDate(String limitDate) {
+        this.limitDate = limitDate;
+    }
+
+    public PriorityEnum getPriority() {
+        return priority;
+    }
+
+    public void setPriority(PriorityEnum priority) {
+        this.priority = priority;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
 }
