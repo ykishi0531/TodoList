@@ -2,44 +2,44 @@ package com.example.form;
 
 public class TodoForm {
 
-  private long id;
-  
-	private String value;
-	
-	private String limitDate;
-	
-	private int priorityId;
-	
-	public long getId() {
-    return id;
-  }
+    private long id;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    private String value;
 
-  public String getValue() {
-		return value;
-	}
+    private String limitDate;
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    private int priorityId;
 
-	public String getLimitDate() {
-		return limitDate;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setLimitDate(String limitDate) {
-		this.limitDate = limitDate;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public int getPriorityId() {
-		return priorityId;
-	}
+    public String getValue() {
+        return value;
+    }
 
-	public void setPriorityId(int priorityId) {
-		this.priorityId = priorityId;
-	}
-	
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public String getLimitDate() {
+        return limitDate;
+    }
+
+    public void setLimitDate(String limitDate) {
+        this.limitDate = limitDate;
+    }
+
+    public int getPriorityId() {
+        return priorityId;
+    }
+
+    public void setPriorityId(int priorityId) {
+        this.priorityId = priorityId;
+    }
+
 }

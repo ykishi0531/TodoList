@@ -5,58 +5,58 @@ import java.sql.Timestamp;
 
 public class Todo {
 
-  private long id;
+    private long id;
 
-  private String value;
+    private String value;
 
-  private Timestamp limitDate;
+    private Timestamp limitDate;
 
-  private int priorityId;
-  
-  private int doneFlg;
+    private int priorityId;
 
-  public long getId() {
-    return id;
-  }
+    private int doneFlg;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    public long getId() {
+        return id;
+    }
 
-  public String getValue() {
-    return value;
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  public void setValue(String value) {
-    this.value = value;
-  }
+    public String getValue() {
+        return value;
+    }
 
-  public Timestamp getLimitDate() {
-    return limitDate;
-  }
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-  public void setLimitDate(Timestamp limitDate) {
-    this.limitDate = limitDate;
-  }
+    public Timestamp getLimitDate() {
+        return limitDate;
+    }
 
-  public int getPriorityId() {
-    return priorityId;
-  }
+    public void setLimitDate(Timestamp limitDate) {
+        this.limitDate = limitDate;
+    }
 
-  public void setPriorityId(int priorityId) {
-    this.priorityId = priorityId;
-  }
+    public int getPriorityId() {
+        return priorityId;
+    }
 
-  public int getDoneFlg() {
-    return doneFlg;
-  }
+    public void setPriorityId(int priorityId) {
+        this.priorityId = priorityId;
+    }
 
-  public void setDoneFlg(int doneFlg) {
-    this.doneFlg = doneFlg;
-  }
+    public int getDoneFlg() {
+        return doneFlg;
+    }
 
-  @Override
-  public String toString() {
-    return this.id + "," + this.value + "," + this.limitDate + "," + this.priorityId + "," + this.doneFlg;
-  }
+    public void setDoneFlg(int doneFlg) {
+        this.doneFlg = doneFlg;
+    }
+
+    @Override
+    public String toString() {
+        return this.id + "," + this.value + "," + this.limitDate + "," + this.priorityId + "," + this.doneFlg;
+    }
 }
