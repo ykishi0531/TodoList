@@ -20,7 +20,8 @@ import com.example.Constants;
 import com.example.entity.Todo;
 
 /**
- * csvのIOを行なうクラスです 本来なら、DBのCRUDを行なうクラスです
+ * csvのIOを行なうクラスです
+ * 本来なら、DBのCRUDを行なうクラスです
  * 
  */
 @Repository
@@ -77,15 +78,19 @@ public class TodoDao {
         return resultList;
     }
 
+    /**
+     * 入力内容をcsvに書き込みます
+     * 
+     * @param todo
+     */
     public void insert(Todo todo) {
         writeString(todo.toString() + "\r\n");
     }
 
     /**
-     * entityの内容をcsvに書き込みます
+     * csvをentityの内容で更新します
      * 
-     * @param list
-     *            entityのリスト
+     * @param list entityのリスト
      */
     public void updateList(List<Todo> list) {
         // 単一行の書き換えが面倒なので、全部消して全部入れる
@@ -103,8 +108,7 @@ public class TodoDao {
     /**
      * Stringの内容をcsvファイルに書き込みます
      * 
-     * @param csvLine
-     *            csv形式のString文字列
+     * @param csvLine csv形式のString文字列
      */
     private void writeString(String csvLine) {
 
